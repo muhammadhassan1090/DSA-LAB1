@@ -89,4 +89,46 @@ void generatePascalsTriangle(int n) {
         cout << endl;
     }
 }
+
+void findMode(int arr[], int n) {
+    if (n == 0) {
+        cout << "(empty)" << endl;
+        return;
+    }
+
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+
+    int maxFreq = 1, currentFreq = 1;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] == arr[i - 1]) {
+            currentFreq++;
+        } else {
+            if (currentFreq > maxFreq) maxFreq = currentFreq;
+            currentFreq = 1;
+        }
+    }
+    if (currentFreq > maxFreq) maxFreq = currentFreq;
+
+    
+    currentFreq = 1;
+    for (int i = 1; i <= n; i++) {
+        if (i < n && arr[i] == arr[i - 1]) {
+            currentFreq++;
+        } else {
+            if (currentFreq == maxFreq) cout << arr[i - 1] << " ";
+            currentFreq = 1;
+        }
+    }
+    cout << endl;
+}
+
 #endif
