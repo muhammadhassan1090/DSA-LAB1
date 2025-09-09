@@ -53,4 +53,22 @@ void TestCaseMultiple() {
     else { cout << "Test Case 3 : Failed";}
 
 }
+
+
+int naiveSearch(string text, string pattern) {
+    if (pattern.empty())
+        return 0;
+
+    int n = text.size();
+    int m = pattern.size();
+
+    for (int i = 0; i <= n - m; i++) {
+        int j = 0;
+        while (j < m && text[i + j] == pattern[j]) {
+            j++;
+        }
+        if (j == m) return i;
+    }
+    return -1;
+}
 #endif
